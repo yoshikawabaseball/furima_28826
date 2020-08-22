@@ -17,6 +17,8 @@
 
 - has_many :items
 - has_many :comments
+- has_many :user_items
+- has_many :items, through: :user_items
 - has_one :delivery_address
 
 
@@ -71,13 +73,26 @@
 
 - has_many :comments
 - has_many :item_images
-- belongs_to :user
+- has_many :user_items
+- has_many :user, through: :user_items
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_condition  
 - belongs_to_active_hash :shipping_charge 
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :preparation_day
 
+
+## user_itemsテーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
 
 ## item_imagesテーブル
 
