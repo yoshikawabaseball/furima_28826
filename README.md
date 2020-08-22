@@ -32,10 +32,11 @@
 | address       | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false, unique: true      |
-| user_id       | references | null: false, foreign_key: true |
+| user_item     | references | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :user_item
 - belongs_to :user
 
 
@@ -91,6 +92,7 @@
 
 ### Association
 
+- has_one :delivery_address
 - belongs_to :user
 - belongs_to :item
 
