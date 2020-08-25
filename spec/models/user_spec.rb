@@ -56,7 +56,26 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
       end
+      it "emailに@が含まれてないと登録できない" do
+        @user.email = "aaaemail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+      it "family_nameが空では登録できない" do
+        @user.family_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name can't be blank", "Family name Full-width characters")
+      end
+      it "first_nameが空では登録できない" do
+        @user.first_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name Full-width characters")
+      end
+      it "family_name_kanaが空では登録できない" do
+        @user.family_name_kana = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name kana can't be blank", "Family name kana Full-width katakana characters")
+      end
     end
   end
-  
 end
