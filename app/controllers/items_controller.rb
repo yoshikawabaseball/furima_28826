@@ -9,13 +9,19 @@ class ItemsController < ApplicationController
   end
   
   def create
-    Item.create(item_params)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
   
   private
   
   def item_params
-    params.require(:item).permit(:item_image)
+    params.require(:item).permit(:image, :name, :introduction, :price, :category_id,
+                  :item_condition_id, :shipping_charge_id, :prefecture_id, :preparation_day_id)
   end
   
     def move_to_index
