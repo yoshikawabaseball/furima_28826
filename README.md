@@ -96,16 +96,6 @@
 - belongs_to :user
 - belongs_to :item
 
-## item_imagesテーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| url     | string     | null: false                    |
-
-### Association
-
-- belongs_to :item
 
 ## brandsテーブル
 
