@@ -37,57 +37,57 @@ RSpec.describe Item, type: :model do
       it 'category_idが存在しなければ保存できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'item_condition_idが存在しなければ保存できない' do
         @item.item_condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item condition Select")
+        expect(@item.errors.full_messages).to include('Item condition Select')
       end
       it 'shipping_charge_idが存在しなければ保存できない' do
         @item.shipping_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge Select")
+        expect(@item.errors.full_messages).to include('Shipping charge Select')
       end
       it 'prefecture_idが存在しなければ保存できない' do
         @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it 'preparation_day_idが存在しなければ保存できない' do
         @item.preparation_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Preparation day Select")
+        expect(@item.errors.full_messages).to include('Preparation day Select')
       end
-      it "￥300~￥9999999の間でなければ保存できない" do
+      it '￥300~￥9999999の間でなければ保存できない' do
         @item.price = '250'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
-      it "catefory_idが1の時、保存できない" do
+      it 'catefory_idが1の時、保存できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
-      it "item_conditionidが1の時、保存できない" do
+      it 'item_conditionidが1の時、保存できない' do
         @item.item_condition_id = '1'
-        @item.valid? 
-        expect(@item.errors.full_messages).to include("Item condition Select")
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Item condition Select')
       end
-      it "shipping_charge_idが1の時、保存できない" do
+      it 'shipping_charge_idが1の時、保存できない' do
         @item.shipping_charge_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge Select")
+        expect(@item.errors.full_messages).to include('Shipping charge Select')
       end
-      it "prefecture_idが1の時、保存できない" do
+      it 'prefecture_idが1の時、保存できない' do
         @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
-      it "preparation_day_idが1の時、保存できない" do
-        @item.preparation_day_id ='1'
+      it 'preparation_day_idが1の時、保存できない' do
+        @item.preparation_day_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Preparation day Select")
+        expect(@item.errors.full_messages).to include('Preparation day Select')
       end
     end
   end
