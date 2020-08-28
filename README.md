@@ -73,7 +73,6 @@
 ### Association 
 
 - has_many :comments
-- has_many :item_images
 - has_many :user_items
 - has_many :user, through: :user_items
 - belongs_to_active_hash :category
@@ -96,16 +95,6 @@
 - belongs_to :user
 - belongs_to :item
 
-## item_imagesテーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| url     | string     | null: false                    |
-
-### Association
-
-- belongs_to :item
 
 ## brandsテーブル
 
