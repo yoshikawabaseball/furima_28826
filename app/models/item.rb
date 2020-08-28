@@ -1,9 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-
-  #has_many :comments
-  #has_many :user_items
-  #has_many :user, through: :user_items
+  belongs_to :user
+  
   has_one_attached       :image
   belongs_to_active_hash :category
   belongs_to_active_hash :item_condition
@@ -13,7 +11,14 @@ class Item < ApplicationRecord
 
   validates :name, :introduction, :price, :image, :category_id, :item_condition_id, :shipping_charge_id,
             :prefecture_id, :preparation_day_id, presence: true
-
-  validates :category_id, :item_condition_id, :shipping_charge_id,
-            :prefecture_id, :preparation_day_id, numericality: { other_than: 1 }
+  validates :price, format: {with: /\A[0-9]+\z/, message: "Half-width number"}
+  
+  
+  validates :price, numericality: { less_than_or_equal_to: 9999999, greater_than_or_equal_to: 300, message: "Out of setting range"} 
+  
+  validates :category_id, numericality: { other_than: 1, message: "Select" }
+  validates :item_condition_id, numericality: { other_than: 1, message: "Select"}
+  validates :shipping_charge_id, numericality: { other_than: 1, message: "Select"}
+  validates :prefecture_id, numericality: { other_than: 1, message: "Select"}
+  validates :preparation_day_id, numericality: { other_than: 1, message: "Select"}
 end
