@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  # has_many :comments
-  # has_many :user_items
-  # has_many :user, through: :user_items
+  #has_many :comments
+  #has_many :user_items
+  #has_many :user, through: :user_items
   has_one_attached       :image
   belongs_to_active_hash :category
   belongs_to_active_hash :item_condition
