@@ -73,7 +73,6 @@
 ### Association 
 
 - has_many :comments
-- has_many :item_images
 - has_many :user_items
 - has_many :user, through: :user_items
 - belongs_to_active_hash :category
