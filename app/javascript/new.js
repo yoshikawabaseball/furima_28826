@@ -7,7 +7,7 @@ function price() {
     const value = priceInput.value;  //入力の金額定義
     
     if (value >= 300 && value <= 9999999) { //300~9999999円の場合の条件分岐
-      let fee = value * 0.1
+      let fee = Math.floor(value * 0.1) //小数点以下切り捨て
       let gains = value - fee
       add_tax.textContent = fee;
       profit.textContent = gains;
