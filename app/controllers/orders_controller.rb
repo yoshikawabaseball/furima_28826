@@ -5,7 +5,10 @@ class OrdersController < ApplicationController
       redirect_to new_user_session_path
     end
     @item = Item.find(params[:item_id])
+    @order = Order.new
   end
+
+  
 
   def create
     @order = Order.new(order_params)
@@ -18,16 +21,20 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  
   private
  
   def order_params
-    params.require(:user_item).permit(:user_id, :item_id, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
+    params.require(:order).permit(:user_id, :item_id, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number, :user_item_id).merge(params.permit[:token])
   end
 
   def pay_item
+    @item = Item.find(params[:item_id])
     Payjp.api_key = "sk_test_17db5bb34aa610d623bdac68"
     Payjp::Charge.create(
-      card: order_params[:token],
+      amount: @item.price,
+      card: params[:token],
       currency: 'jpy'
     )
   end
