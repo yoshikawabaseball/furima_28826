@@ -6,11 +6,11 @@ class Order
   with_options presence: true do
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :phone_number, format: { with: /\A\d{11}\z/}
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 0, message: "Select"}
     validates :city
     validates :house_number
   end
-  validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank"}
+  #validates :prefecture_id, numericality: { other_than: 0, message: "Select"}
  
   def save
     UserItem.create(user_id: user_id, item_id: item_id)
