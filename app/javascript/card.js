@@ -6,21 +6,16 @@ const pay = () => {
 
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-    console.log(formResult)
-    console.log(formData)
+    
     const card = {
       number: formData.get("order[number]"),
       exp_month: formData.get("order[exp_month]"),
       exp_year: `20${formData.get("order[exp_year]")}`,
       cvc: formData.get("order[cvc]"),
     };
-    console.log(card)
     
-  
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
-        console.log(status)
-        console.log(response)
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;  //隠し要素としてトークンの値が入っているHTMLを生成する

@@ -6,14 +6,8 @@ class OrdersController < ApplicationController
     end
     @item = Item.find(params[:item_id])
     @order = Order.new
-
-    if @item.user_id == current_user.id
-      redirect_to root_path and return
-    end
     
-    if @item.user_item != nil
-      redirect_to root_path and return
-    end 
+    return redirect_to root_path if @item.user_id == current_user.id || @item.user_item != nil
   end
 
   def create
@@ -31,7 +25,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    # params.require(:order).permit(:user_id, :item_id, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(params.permit[:token])
     params.require(:order).permit(:post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
