@@ -17,10 +17,8 @@
 ### Association
 
 - has_many :items
-- has_many :comments
-- has_many :user_items
-- has_many :items, through: :user_items
-- has_one :delivery_address
+- has_one :user_item
+
 
 
 ## addressテーブル 
@@ -37,8 +35,7 @@
 
 ### Association
 
-- belongs_to :user_item
-- belongs_to :user
+- belongs_to :item
 
 
 
@@ -59,9 +56,9 @@
 
 ### Association 
 
-- has_many :comments
-- has_many :user_items
-- has_many :user, through: :user_items
+- has_one :address
+- has_one :user_items
+- belongs_to :user
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_condition  
 - belongs_to_active_hash :shipping_charge 
@@ -78,6 +75,5 @@
 
 ### Association
 
-- has_one :delivery_address
 - belongs_to :user
 - belongs_to :item
